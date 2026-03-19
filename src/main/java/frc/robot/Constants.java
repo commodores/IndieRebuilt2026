@@ -57,25 +57,37 @@ public class Constants {
         public static final double noTargetHoldTimeoutSeconds = 2.0;
     }
 
-    public static final class FeederConstants{
-        public static final int kickerMoter = 8;
-        public static final int beltMotor = 9;
+   public static final class FeederConstants{
+        public static final int rollerMotor = 8;
+        public static final int bottomMotor = 7;
+        public static final int topMotor = 9;
+        
+        
+        public static final double bottomClearOutSeconds = 0.2;
+        public static final double bottomSpinupDelaySeconds = 0.25;
 
-        public static final double kickerClearOutSeconds = 0.2;
-        public static final double kickerSpinupDelaySeconds = 0.25;
+        public static final double topSpinupDelaySeconds = 0.2;
+        public static final double topClearOutSeconds = 0.25;
+        
         public static final double feederRunTimedSeconds = 4;
 
-        public static final double kickerFeedVolts = 12.0;
-        public static final double beltFeedVolts = 10.0;
-        public static final double kickerClearReverseVolts = -4.0;
+        public static final double bottomFeedVolts = 12.0;
+        public static final double topFeedVolts = 12.0;
+        public static final double rollerFeedVolts = 10.0;
+        
+        public static final double bottomClearReverseVolts = -4.0;`
+        public static final double topClearReverseVolts = -4.0;
         public static final double beltClearReverseVolts = -4.0;
-        public static final double kickerSpinupVolts = 8.0;
-        public static final double beltOffVolts = 0.0;
+       
+        public static final double bottomSpinupVolts = 8.0;
+        public static final double topSpinupVolts = 8.0;
+        public static final double rollerOffVolts = 0.0;
 
         // Mechanism positive direction relative to motor positive rotation.
         // +1.0 means same direction, -1.0 means opposite direction.
-        public static final double beltMotorDirectionScalar = -1.0;
-        public static final double kickerMotorDirectionScalar = 1.0;
+        public static final double rollerMotorDirectionScalar = -1.0;
+        public static final double bottomMotorDirectionScalar = 1.0;
+        public static final double topMotorDirectionScalar = 1.0;
     }
 
     public static final class VisionConstants {

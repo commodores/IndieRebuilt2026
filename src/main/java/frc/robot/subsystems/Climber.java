@@ -4,12 +4,18 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix6.hardware.TalonFX;
+import com.revrobotics.spark.SparkFlex;
+import com.revrobotics.spark.SparkLowLevel.MotorType;
+
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants.FeederConstants;
 
 public class Climber extends SubsystemBase {
   /** Creates a new Climber. */
+ 
   public Climber() {
-    
+     final SparkFlex climberMotor = new SparkFlex(ClimberConstants.climberMotor,MotorType.kBrushless);
   }
 
   @Override

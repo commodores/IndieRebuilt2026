@@ -4,42 +4,58 @@ import com.ctre.phoenix6.configs.TalonFXConfiguration;
 import com.ctre.phoenix6.signals.GravityTypeValue;
 import com.ctre.phoenix6.signals.InvertedValue;
 import com.ctre.phoenix6.signals.NeutralModeValue;
+import com.revrobotics.spark.config.SparkFlexConfig;
+import com.revrobotics.spark.config.SparkFlexConfigAccessor;
+import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
+
+import edu.wpi.first.util.function.FloatSupplier;
 
 public final class Configs {
 
   public static final class IntakeSubsystem {
-    public static final TalonFXConfiguration intakeConfig = new TalonFXConfiguration();
-    public static final TalonFXConfiguration intakeLiftRightConfig = new TalonFXConfiguration();   // leader
-    public static final TalonFXConfiguration intakeLiftLeftConfig = new TalonFXConfiguration();  // follower
+    public static final SparkFlexConfig intakeConfig = new SparkFlexConfig();
+    public static final SparkFlexConfig intakeLiftRightConfig = new SparkFlexConfig();   // leader
+    public static final SparkFlexConfig intakeLiftLeftConfig = new SparkFlexConfig();  // follower
 
     static {
 
       // ----------------
       // Intake roller motor
       // ----------------
-      intakeConfig.MotorOutput.NeutralMode = NeutralModeValue.Coast;
+      //intakeConfig.MotorOutput.NeutralMode = NeutralModeValue.Coast;
+      //neo
+      intakeConfig.idleMode(IdleMode.kCoast);
+      intakeConfig.smartCurrentLimit(80);
+      intakeConfig.secondaryCurrentLimit(110);
 
-      intakeConfig.CurrentLimits.SupplyCurrentLimitEnable = true;
-      intakeConfig.CurrentLimits.SupplyCurrentLimit = 80; // starter (A)
-      intakeConfig.CurrentLimits.SupplyCurrentLowerLimit = 110;
-      intakeConfig.CurrentLimits.SupplyCurrentLowerTime = 0.4;
+      //intakeConfig.CurrentLimits.SupplyCurrentLimitEnable = true;
+    //  intakeConfig.CurrentLimits.SupplyCurrentLimit = 80; // starter (A)
+     // intakeConfig.CurrentLimits.SupplyCurrentLowerLimit = 110;
+     // intakeConfig.CurrentLimits.SupplyCurrentLowerTime = 0.4;
 
-      intakeConfig.CurrentLimits.StatorCurrentLimitEnable = true;
-      intakeConfig.CurrentLimits.StatorCurrentLimit = 110; // starter (A)
+      //intakeConfig.CurrentLimits.StatorCurrentLimitEnable = true;
+     // intakeConfig.CurrentLimits.StatorCurrentLimit = 110; // starter (A)
 
       // ----------------
       // Intake lift Right
       // ----------------
-      intakeLiftRightConfig.MotorOutput.NeutralMode = NeutralModeValue.Brake;
-      intakeLiftRightConfig.MotorOutput.Inverted = InvertedValue.Clockwise_Positive;
 
-      intakeLiftRightConfig.CurrentLimits.SupplyCurrentLimitEnable = true;
-      intakeLiftRightConfig.CurrentLimits.SupplyCurrentLimit = 60; // increased for added belt tensioner load
-      intakeLiftRightConfig.CurrentLimits.SupplyCurrentLowerLimit = 90;
-      intakeLiftRightConfig.CurrentLimits.SupplyCurrentLowerTime = 0.3;
+      //neo 
+      intakeLiftRightConfig.inverted(false);
+      intakeLiftRightConfig.idleMode(IdleMode.kBrake);
+      intakeLiftRightConfig.smartCurrentLimit(60);
+      intakeLiftRightConfig.secondaryCurrentLimit(90);
 
-      intakeLiftRightConfig.CurrentLimits.StatorCurrentLimitEnable = true;
-      intakeLiftRightConfig.CurrentLimits.StatorCurrentLimit = 100;
+      //intakeLiftRightConfig.MotorOutput.NeutralMode = NeutralModeValue.Brake;
+      //intakeLiftRightConfig.MotorOutput.Inverted = InvertedValue.Clockwise_Positive;
+
+      //intakeLiftRightConfig.CurrentLimits.SupplyCurrentLimitEnable = true;
+      //intakeLiftRightConfig.CurrentLimits.SupplyCurrentLimit = 60; // increased for added belt tensioner load
+      //intakeLiftRightConfig.CurrentLimits.SupplyCurrentLowerLimit = 90;
+      //intakeLiftRightConfig.CurrentLimits.SupplyCurrentLowerTime = 0.3;
+
+     // intakeLiftRightConfig.CurrentLimits.StatorCurrentLimitEnable = true;
+      //intakeLiftRightConfig.CurrentLimits.StatorCurrentLimit = 100;
 
       intakeLiftRightConfig.Feedback.SensorToMechanismRatio = 24.0;
 
@@ -68,16 +84,23 @@ public final class Configs {
       // Intake lift Left
       // Apply same safety limits + current limits
       // ----------------
-      intakeLiftLeftConfig.MotorOutput.NeutralMode = NeutralModeValue.Brake;
-      intakeLiftLeftConfig.MotorOutput.Inverted = InvertedValue.CounterClockwise_Positive;
 
-      intakeLiftLeftConfig.CurrentLimits.SupplyCurrentLimitEnable = true;
-      intakeLiftLeftConfig.CurrentLimits.SupplyCurrentLimit = 60;
-      intakeLiftLeftConfig.CurrentLimits.SupplyCurrentLowerLimit = 90;
-      intakeLiftLeftConfig.CurrentLimits.SupplyCurrentLowerTime = 0.3;
+      //neo 
+      intakeLiftLeftConfig.idleMode(IdleMode.kBrake);
+      intakeLiftLeftConfig.inverted(true);
+      intakeLiftLeftConfig.smartCurrentLimit(60);
+      intakeLiftLeftConfig.secondaryCurrentLimit(90);
 
-      intakeLiftLeftConfig.CurrentLimits.StatorCurrentLimitEnable = true;
-      intakeLiftLeftConfig.CurrentLimits.StatorCurrentLimit = 100;
+      //intakeLiftLeftConfig.MotorOutput.NeutralMode = NeutralModeValue.Brake;
+      //intakeLiftLeftConfig.MotorOutput.Inverted = InvertedValue.CounterClockwise_Positive;
+
+     // intakeLiftLeftConfig.CurrentLimits.SupplyCurrentLimitEnable = true;
+     // intakeLiftLeftConfig.CurrentLimits.SupplyCurrentLimit = 60;
+     // intakeLiftLeftConfig.CurrentLimits.SupplyCurrentLowerLimit = 90;
+    //  intakeLiftLeftConfig.CurrentLimits.SupplyCurrentLowerTime = 0.3;
+
+     // intakeLiftLeftConfig.CurrentLimits.StatorCurrentLimitEnable = true;
+      //intakeLiftLeftConfig.CurrentLimits.StatorCurrentLimit = 100;
 
       intakeLiftLeftConfig.Feedback.SensorToMechanismRatio = 24.0;
 
@@ -110,6 +133,8 @@ public final class Configs {
     //public static final TalonFXConfiguration shooterLeftBottomConfig = new TalonFXConfiguration();   // follower
     public static final TalonFXConfiguration shooterRightTopConfig = new TalonFXConfiguration();     // leader
     //public static final TalonFXConfiguration shooterRightBottomConfig = new TalonFXConfiguration();  // follower
+    //neo 
+    public static final SparkFlexConfig
 
     static {
       // ----------------
