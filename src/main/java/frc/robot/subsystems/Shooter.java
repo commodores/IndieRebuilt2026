@@ -29,9 +29,9 @@ public class Shooter extends SubsystemBase {
   private static final double SHOOTER_AT_SPEED_TOLERANCE_RPM = 200.0;
 
   private final SparkFlex leftTopLeader = new SparkFlex(ShooterConstants.shooterTopLeft);
-  private final SparkFlex leftBottomFollower = new SparkFlex(ShooterConstants.shooterBottomLeft);
-  private final SparkFlex rightTopLeader = new SparkFlex(ShooterConstants.shooterTopRight);
-  private final SparkFlex rightBottomFollower = new SparkFlex(ShooterConstants.shooterBottomRight);
+  private final TalonFX rightTopLeader = new TalonFX(ShooterConstants.shooterTopRight);
+  private final TalonFX rightBottomFollower = new TalonFX(ShooterConstants.shooterBottomRight);
+  
 
   private final VelocityVoltage leftVelocityRequest = new VelocityVoltage(0);
   private final VelocityVoltage rightVelocityRequest = new VelocityVoltage(0);

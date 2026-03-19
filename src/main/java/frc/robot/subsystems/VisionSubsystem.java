@@ -1,12 +1,4 @@
-// Copyright (c) FIRST and other WPILib contributors.
-// Open Source Software; you can modify and/or share it under the terms of
-// the WPILib BSD license file in the root directory of this project.
-
 package frc.robot.subsystems;
-
-import edu.wpi.first.wpilibj2.command.SubsystemBase;
-
-import java.util.OptionalDouble;
 
 import edu.wpi.first.math.filter.SlewRateLimiter;
 import edu.wpi.first.wpilibj.Timer;
@@ -183,14 +175,4 @@ public class VisionSubsystem extends SubsystemBase {
         SmartDashboard.putBoolean("LL/DistanceFilterEnabled", true);
         SmartDashboard.putString("LL/Status", hasTarget ? "target" : "no target");
     }
-}
-
-public class VisionSubsystem extends SubsystemBase {
-  /** Creates a new VisionSubsystem. */
-  public VisionSubsystem() {}
-
-  @Override
-  public void periodic() {
-    // This method will be called once per scheduler run
-  }
 }

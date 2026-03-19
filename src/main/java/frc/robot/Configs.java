@@ -4,64 +4,42 @@ import com.ctre.phoenix6.configs.TalonFXConfiguration;
 import com.ctre.phoenix6.signals.GravityTypeValue;
 import com.ctre.phoenix6.signals.InvertedValue;
 import com.ctre.phoenix6.signals.NeutralModeValue;
-import com.revrobotics.spark.SparkFlex;
-import com.revrobotics.spark.SparkLowLevel.MotorType;
-import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
-import com.revrobotics.spark.config.SparkFlexConfig;
 
 public final class Configs {
 
   public static final class IntakeSubsystem {
-    static SparkFlexConfig intakeConfig = new SparkFlexConfig();
-    public static final TalonFXConfiguration kickerConfig = new TalonFXConfiguration();
-    static SparkFlexConfig intakeLiftRightConfig = new SparkFlexConfig();   // leader
-    static SparkFlexConfig intakeLiftLeftConfig = new SparkFlexConfig();  // follower 
-             
-     
-         static {
-               // ----------------
-               // Intake roller motor
-               // ----------------
-               //intakeConfig.MotorOutput.NeutralMode = NeutralModeValue.Coast;
-     
-               intakeConfig.idleMode(IdleMode.kCoast);
-               intakeConfig.smartCurrentLimit(80);
-               intakeConfig.secondaryCurrentLimit(110);
+    public static final TalonFXConfiguration intakeConfig = new TalonFXConfiguration();
+    public static final TalonFXConfiguration intakeLiftRightConfig = new TalonFXConfiguration();   // leader
+    public static final TalonFXConfiguration intakeLiftLeftConfig = new TalonFXConfiguration();  // follower
 
-      //intakeConfig.CurrentLimits.SupplyCurrentLimitEnable = true;
-      //intakeConfig.CurrentLimits.SupplyCurrentLimit = 80; // starter (A)
-      //intakeConfig.CurrentLimits.SupplyCurrentLowerLimit = 110;
-      //intakeConfig.CurrentLimits.SupplyCurrentLowerTime = 0.4;
+    static {
 
-      //intakeConfig.CurrentLimits.StatorCurrentLimitEnable = true;
-      //intakeConfig.CurrentLimits.StatorCurrentLimit = 110; // starter (A)
+      // ----------------
+      // Intake roller motor
+      // ----------------
+      intakeConfig.MotorOutput.NeutralMode = NeutralModeValue.Coast;
 
-    }
+      intakeConfig.CurrentLimits.SupplyCurrentLimitEnable = true;
+      intakeConfig.CurrentLimits.SupplyCurrentLimit = 80; // starter (A)
+      intakeConfig.CurrentLimits.SupplyCurrentLowerLimit = 110;
+      intakeConfig.CurrentLimits.SupplyCurrentLowerTime = 0.4;
+
+      intakeConfig.CurrentLimits.StatorCurrentLimitEnable = true;
+      intakeConfig.CurrentLimits.StatorCurrentLimit = 110; // starter (A)
 
       // ----------------
       // Intake lift Right
       // ----------------
+      intakeLiftRightConfig.MotorOutput.NeutralMode = NeutralModeValue.Brake;
+      intakeLiftRightConfig.MotorOutput.Inverted = InvertedValue.Clockwise_Positive;
 
-      static {
+      intakeLiftRightConfig.CurrentLimits.SupplyCurrentLimitEnable = true;
+      intakeLiftRightConfig.CurrentLimits.SupplyCurrentLimit = 60; // increased for added belt tensioner load
+      intakeLiftRightConfig.CurrentLimits.SupplyCurrentLowerLimit = 90;
+      intakeLiftRightConfig.CurrentLimits.SupplyCurrentLowerTime = 0.3;
 
-        // set Idle Mode
-        intakeLiftRightConfig.idleMode(IdleMode.kBrake);
-        intakeLiftRightConfig.inverted(InvertedValue.Clockwise_Positive);
-        intakeLiftRightConfig.smartCurrentLimit(60);
-        intakeLiftRightConfig.secondaryCurrentLimit(90);
-        
-
-      }
-      //intakeLiftRightConfig.MotorOutput.NeutralMode = NeutralModeValue.Brake;
-      //intakeLiftRightConfig.MotorOutput.Inverted = InvertedValue.Clockwise_Positive;
-
-     // intakeLiftRightConfig.CurrentLimits.SupplyCurrentLimitEnable = true;
-     // intakeLiftRightConfig.CurrentLimits.SupplyCurrentLimit = 60; // increased for added belt tensioner load
-     // intakeLiftRightConfig.CurrentLimits.SupplyCurrentLowerLimit = 90;
-     // intakeLiftRightConfig.CurrentLimits.SupplyCurrentLowerTime = 0.3;
-
-     // intakeLiftRightConfig.CurrentLimits.StatorCurrentLimitEnable = true;
-     // intakeLiftRightConfig.CurrentLimits.StatorCurrentLimit = 100;
+      intakeLiftRightConfig.CurrentLimits.StatorCurrentLimitEnable = true;
+      intakeLiftRightConfig.CurrentLimits.StatorCurrentLimit = 100;
 
       intakeLiftRightConfig.Feedback.SensorToMechanismRatio = 24.0;
 
